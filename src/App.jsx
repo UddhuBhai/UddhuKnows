@@ -13,19 +13,11 @@ function App() {
   const API_URL =
     import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-  /* =========================
-     AUTO SCROLL
-  ========================= */
-
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({
       behavior: "smooth",
     });
   }, [messages]);
-
-  /* =========================
-     SEND MESSAGE
-  ========================= */
 
   const sendMessage = async () => {
     if (!message.trim() || loading) return;
@@ -58,9 +50,6 @@ function App() {
     setLoading(true);
 
     try {
-      /* =========================
-         CONVERT CHAT TO API FORMAT
-      ========================= */
 
       const conversation = updatedMessages.map(
         (msg) => ({
@@ -72,10 +61,6 @@ function App() {
           content: msg.text,
         })
       );
-
-      /* =========================
-         API REQUEST
-      ========================= */
 
       const response = await fetch(
         `${API_URL}/chat`,
@@ -101,10 +86,6 @@ function App() {
       if (!response.body) {
         throw new Error("No response stream received.");
       }
-
-      /* =========================
-         READ STREAM
-      ========================= */
 
       const reader =
         response.body.getReader();
@@ -178,10 +159,6 @@ function App() {
     setLoading(false);
   };
 
-  /* =========================
-     KEYBOARD
-  ========================= */
-
   const handleKeyDown = (e) => {
     if (
       e.key === "Enter" &&
@@ -191,10 +168,6 @@ function App() {
       sendMessage();
     }
   };
-
-  /* =========================
-     COPY CODE
-  ========================= */
 
   const copyCode = async (code) => {
     try {
@@ -216,10 +189,6 @@ function App() {
     }
   };
 
-  /* =========================
-     NEW CHAT
-  ========================= */
-
   const startNewChat = () => {
     if (loading) return;
 
@@ -229,10 +198,6 @@ function App() {
 
   return (
     <div className="app">
-
-      {/* =========================
-          NAVBAR
-      ========================= */}
 
       <nav className="navbar">
 
@@ -258,17 +223,9 @@ function App() {
 
       </nav>
 
-      {/* =========================
-          MAIN
-      ========================= */}
-
       <main className="main">
 
         {messages.length === 0 ? (
-
-          /* =========================
-             HERO
-          ========================= */
 
           <div className="hero">
 
@@ -323,10 +280,6 @@ function App() {
           </div>
 
         ) : (
-
-          /* =========================
-             MESSAGES
-          ========================= */
 
           <div className="messages">
 
@@ -461,10 +414,6 @@ function App() {
           </div>
         )}
 
-        {/* =========================
-            CHAT INPUT
-        ========================= */}
-
         <div className="chat-input">
 
           <input
@@ -488,14 +437,12 @@ function App() {
             disabled={
               loading ||
               !message.trim()
-            }
-          >
+            }>
+              
             {loading ? "..." : "↗"}
           </button>
 
         </div>
-
-        {/* DISCLAIMER */}
 
         <p className="disclaimer">
           UddhuKnows can make mistakes.
@@ -503,8 +450,6 @@ function App() {
         </p>
 
       </main>
-
-      {/* FOOTER */}
 
       <footer>
         made by Uddhu :)

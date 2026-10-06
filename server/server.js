@@ -5,42 +5,22 @@ require("dotenv").config();
 
 const app = express();
 
-/* =========================
-   PORT
-========================= */
-
 const PORT = process.env.PORT || 5000;
-
-/* =========================
-   BAZAARLINK CLIENT
-========================= */
 
 const client = new OpenAI({
   apiKey: process.env.BAZAARLINK_API_KEY,
   baseURL: "https://api.bazaarlink.ai/v1",
 });
 
-/* =========================
-   MIDDLEWARE
-========================= */
-
 app.use(cors());
 
 app.use(express.json());
-
-/* =========================
-   TEST ROUTE
-========================= */
 
 app.get("/", (req, res) => {
   res.json({
     message: "UddhuKnows backend is alive 🧠",
   });
 });
-
-/* =========================
-   SYSTEM PROMPT
-========================= */
 
 const systemPrompt = `
 You are UddhuKnows, a personal AI assistant created by Uddhu.
@@ -258,17 +238,9 @@ Make the conversation feel human.
 And occasionally say "hn?" like Uddhu would.
 `;
 
-/* =========================
-   CHAT ROUTE
-========================= */
-
 app.post("/chat", async (req, res) => {
   try {
     const conversation = req.body.messages;
-
-    /* =========================
-       VALIDATE REQUEST
-    ========================= */
 
     if (
       !conversation ||
@@ -280,10 +252,6 @@ app.post("/chat", async (req, res) => {
       });
     }
 
-    /* =========================
-       LIMIT CONTEXT
-    ========================= */
-
     const MAX_MESSAGES = 12;
 
     const recentConversation =
@@ -292,10 +260,6 @@ app.post("/chat", async (req, res) => {
     console.log(
       `Conversation: ${conversation.length} messages → sending ${recentConversation.length}`
     );
-
-    /* =========================
-       PREPARE AI MESSAGES
-    ========================= */
 
     const messages = [
       {
@@ -315,10 +279,6 @@ app.post("/chat", async (req, res) => {
         })),
     ];
 
-    /* =========================
-       STREAM HEADERS
-    ========================= */
-
     res.setHeader(
       "Content-Type",
       "text/plain; charset=utf-8"
@@ -334,10 +294,6 @@ app.post("/chat", async (req, res) => {
       "keep-alive"
     );
 
-    /* =========================
-       AI REQUEST
-    ========================= */
-
     const stream =
       await client.chat.completions.create(
         {
@@ -349,17 +305,10 @@ app.post("/chat", async (req, res) => {
         },
         {
           headers: {
-            /*
-             * Prevent accidental paid fallback.
-             */
             "X-Free-Fallback": "false",
           },
         }
       );
-
-    /* =========================
-       STREAM RESPONSE
-    ========================= */
 
     for await (const chunk of stream) {
       const text =
@@ -393,10 +342,6 @@ app.post("/chat", async (req, res) => {
     }
   }
 });
-
-/* =========================
-   START SERVER
-========================= */
 
 app.listen(PORT, () => {
   console.log(

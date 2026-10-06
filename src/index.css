@@ -37,20 +37,12 @@ button {
   cursor: pointer;
 }
 
-/* =========================
-   APP
-========================= */
-
 .app {
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
-
-/* =========================
-   NAVBAR
-========================= */
 
 .navbar {
   height: 85px;
@@ -101,10 +93,6 @@ button {
   cursor: not-allowed;
 }
 
-/* =========================
-   MAIN
-========================= */
-
 .main {
   width: min(760px, 88%);
   flex: 1;
@@ -114,10 +102,6 @@ button {
   justify-content: center;
   min-height: 0;
 }
-
-/* =========================
-   HERO
-========================= */
 
 .hero {
   position: relative;
@@ -149,10 +133,6 @@ button {
   line-height: 1.7;
 }
 
-/* =========================
-   SUGGESTIONS
-========================= */
-
 .suggestions {
   display: flex;
   justify-content: center;
@@ -176,10 +156,6 @@ button {
   border-color: var(--ink);
   transform: translateY(-2px);
 }
-
-/* =========================
-   CHAT MESSAGES
-========================= */
 
 .messages {
   width: 100%;
@@ -250,10 +226,6 @@ button {
   margin-bottom: 0;
 }
 
-/* =========================
-   MESSAGE ANIMATION
-========================= */
-
 @keyframes messageIn {
   from {
     opacity: 0;
@@ -265,10 +237,6 @@ button {
     transform: translateY(0);
   }
 }
-
-/* =========================
-   MARKDOWN
-========================= */
 
 .message-content h1,
 .message-content h2,
@@ -321,10 +289,6 @@ button {
   background: #33312e;
   color: white;
 }
-
-/* =========================
-   CODE BLOCK
-========================= */
 
 .code-block {
   width: 100%;
@@ -388,10 +352,6 @@ button {
   border-radius: 10px;
 }
 
-/* =========================
-   CHAT INPUT
-========================= */
-
 .chat-input {
   background: var(--white);
   border: 1px solid var(--line);
@@ -449,10 +409,6 @@ button {
   cursor: not-allowed;
 }
 
-/* =========================
-   TYPING CURSOR
-========================= */
-
 .typing-cursor {
   display: inline-block;
   color: var(--orange);
@@ -466,10 +422,6 @@ button {
   }
 }
 
-/* =========================
-   DISCLAIMER
-========================= */
-
 .disclaimer {
   text-align: center;
   margin-top: 16px;
@@ -477,10 +429,6 @@ button {
   font-size: 9px;
   color: #aaa49b;
 }
-
-/* =========================
-   FOOTER
-========================= */
 
 footer {
   text-align: center;
@@ -490,10 +438,6 @@ footer {
   color: var(--muted);
   flex-shrink: 0;
 }
-
-/* =========================
-   TABLET
-========================= */
 
 @media (max-width: 800px) {
   .navbar {
@@ -508,10 +452,6 @@ footer {
     max-width: 84%;
   }
 }
-
-/* =========================
-   MOBILE
-========================= */
 
 @media (max-width: 600px) {
   .navbar {
@@ -629,10 +569,6 @@ footer {
   }
 }
 
-/* =========================
-   VERY SMALL PHONES
-========================= */
-
 @media (max-width: 380px) {
   .hero h1 {
     font-size: 41px;
@@ -655,10 +591,6 @@ footer {
     max-width: 94%;
   }
 }
-
-/* =========================
-   REDUCE MOTION
-========================= */
 
 @media (prefers-reduced-motion: reduce) {
   *,
